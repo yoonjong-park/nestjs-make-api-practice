@@ -7,11 +7,11 @@ import {
   Patch,
   Post,
   Query,
-} from '@nestjs/common';
-import { MoviesService } from './movies.service';
-import { Movie } from './entities/movie.entity';
+} from "@nestjs/common";
+import { MoviesService } from "./movies.service";
+import { Movie } from "./entities/movie.entity";
 
-@Controller('movies')
+@Controller("movies")
 export class MoviesController {
   constructor(private readonly moviesService: MoviesService) {}
 
@@ -25,8 +25,8 @@ export class MoviesController {
   //   return `We are seraching for a movie with a title ${searchingYear}`;
   // }
 
-  @Get(':id')
-  getOne(@Param('id') movieId: string): Movie {
+  @Get(":id")
+  getOne(@Param("id") movieId: string): Movie {
     return this.moviesService.getOne(movieId);
   }
 
@@ -35,16 +35,13 @@ export class MoviesController {
     return this.moviesService.create(movieData);
   }
 
-  @Delete(':id')
-  remove(@Param('id') movieId: string) {
+  @Delete(":id")
+  remove(@Param("id") movieId: string) {
     return this.moviesService.deleteOne(movieId);
   }
 
-  @Patch(':id')
-  patch(@Param('id') movieId: string, @Body() updateData) {
-    return {
-      updateMovie: movieId,
-      ...updateData,
-    };
+  @Patch(":id")
+  patch(@Param("id") movieId: string, @Body() updateData) {
+    return this.moviesService.update(movieId, updateData);
   }
 }
