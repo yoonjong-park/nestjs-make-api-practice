@@ -22,11 +22,6 @@ export class MoviesController {
     return this.moviesService.getAll();
   }
 
-  // @Get('search')
-  // serach(@Query('year') searchingYear: string) {
-  //   return `We are seraching for a movie with a title ${searchingYear}`;
-  // }
-
   @Get(":id")
   getOne(@Param("id") movieId: number): Movie {
     return this.moviesService.getOne(movieId);
